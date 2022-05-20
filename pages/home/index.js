@@ -1,7 +1,8 @@
 import react, { useContext } from "react";
-import { View, Text, Dimensions, Image } from "react-native";
+import { View, Text, Image } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import Svg, { Path } from "react-native-svg";
+import { Icon } from "react-native-elements";
 import styles from "./styles";
 import { Context as AuthContext } from "../../context/AuthContext";
 const Home = () => {
@@ -9,60 +10,58 @@ const Home = () => {
 
   return (
     <SafeAreaView style={styles.container}>
-      <View
-        style={{
-          height: 120,
-          backgroundColor: "#00cba9",
-
-          width: Dimensions.get("screen").width,
-        }}
-      >
-        <Text
+      <View style={styles.mainBox}>
+        <Text style={styles.mainText}>Wellcome {state.email}</Text>
+      </View>
+      <View>
+        <View
           style={{
-            color: "#000",
-            fontSize: 22,
-            top: 15,
-            textAlign: "center",
-            justifyContent: "center",
+            flex: 2,
+            justifyContent: "flex-start",
+            alignContent: "flex-start",
+            backgroundColor: "blue",
+            opacity: 0.8,
+            borderRadius: 20,
+            width: 180,
+            height: 200,
+            padding: 4,
           }}
         >
-          Wellcome {state.email}
-        </Text>
-      </View>
-      <View
-        style={{
-          backgroundColor: "blue",
-          justifyContent: "flex-start",
-          borderRadius: 20,
-          width: 180,
-          height: 200,
-          padding: 8,
-        }}
-      >
-        <View>
-          <Text style={{ margin: 10 }}>Haert Rate</Text>
-          <View
-            style={{
-              backgroundColor: "#00cba9",
-              padding: 5,
-              borderRadius: 50,
-              width: 60,
-              height: 60,
-              top: -40,
-              left: 110,
-              alignItems: "flex-end",
-            }}
-          >
-            <Image
-              source={require("../../assets/images/SignInPic5.jpg")}
+          <View>
+            <Text style={{ margin: 10, fontSize: 16, color: "#ccc" }}>
+              Haert Rate
+            </Text>
+            <View
               style={{
-                width: 60,
-                height: 60,
-                alignContent: "center",
+                padding: 3,
+                borderRadius: 50,
+                width: 55,
+                height: 55,
+                top: -45,
+                left: "60%",
                 alignItems: "center",
               }}
-              resizeMode="cover"
-            />
+            >
+              <Icon
+                type="font-awesome"
+                raised
+                name="heartbeat"
+                size={20}
+                color="blue"
+              />
+            </View>
+            <View style={{}}>
+              <Text
+                style={{ fontSize: 22, fontWeight: "900", color: "#FFFFFF" }}
+              >
+                Sales Total
+              </Text>
+            </View>
+            <View style={{ alignContent: "center", alignItems: "center" }}>
+              <Text style={{ fontSize: 14, color: "#FFFFcc" }}>
+                120,500.00 ريال
+              </Text>
+            </View>
           </View>
         </View>
       </View>
