@@ -92,7 +92,11 @@ function HomeFlow() {
       <Tab.Screen name="Home" component={Home} />
       <Tab.Screen name="Orders" component={Orders} />
       <Tab.Screen name="Products" component={Products} />
-      <Tab.Screen name="Profile" component={Profile} options={{ ta }} />
+      <Tab.Screen
+        name="Profile"
+        component={Profile}
+        options={{ headerShown: false }}
+      />
     </Tab.Navigator>
   );
 }
