@@ -28,7 +28,7 @@ const LoginScreen = ({ navigation }) => {
 
   const validationUserName = (text) => {
     setUsername(text);
-    if (username.length > 10 && password.length > 5) {
+    if (username.length > 10 && password.length > 5) { 
       setIsvalid(true);
     } else {
       setIsvalid(false);
