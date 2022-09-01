@@ -1,7 +1,7 @@
 import { Dimensions } from "react-native";
 const { width, height } = Dimensions.get("window");
 export const COLORS = {
-  primary: "#5390ff",
+  primary: "#00CED1",
   secondary: "#00acc1",
 
   black: "#1E1F20",
@@ -30,18 +30,17 @@ export const SIZE = {
 };
 export const FONTS = {
   largTitle: {
-    fontFamily: "IRANSans_Bold",
     fontSize: SIZE.largTitle,
     lineHeight: 50,
   },
-  h1: { fontFamily: "IRANSansWeb", fontSize: SIZE.h1, lineHeight: 36 },
-  h2: { fontFamily: "IRANSans_Bold", fontSize: SIZE.h2, lineHeight: 30 },
-  h3: { fontFamily: "IRANSans_Bold", fontSize: SIZE.h3, lineHeight: 22 },
-  h4: { fontFamily: "IRANSans_Bold", fontSize: SIZE.h4, lineHeight: 22 },
-  body1: { fontFamily: "IRANSansWeb", fontSize: SIZE.body1, lineHeight: 36 },
-  body2: { fontFamily: "IRANSansWeb", fontSize: SIZE.body2, lineHeight: 30 },
-  body3: { fontFamily: "IRANSansWeb", fontSize: SIZE.body3, lineHeight: 22 },
-  body4: { fontFamily: "IRANSansWeb", fontSize: SIZE.body4, lineHeight: 22 },
+  h1: { fontSize: SIZE.h1, lineHeight: 36 },
+  h2: { fontSize: SIZE.h2, lineHeight: 30 },
+  h3: { fontSize: SIZE.h3, lineHeight: 22 },
+  h4: { fontSize: SIZE.h4, lineHeight: 22 },
+  body1: { fontSize: SIZE.body1, lineHeight: 36 },
+  body2: { fontSize: SIZE.body2, lineHeight: 30 },
+  body3: { fontSize: SIZE.body3, lineHeight: 22 },
+  body4: { fontSize: SIZE.body4, lineHeight: 22 },
 };
 const appTheme = { COLORS, SIZE, FONTS };
 export default appTheme;

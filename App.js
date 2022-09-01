@@ -1,20 +1,21 @@
-import react, { useContext } from "react";
-import { StatusBar } from "react-native";
+import react, { useContext, useState, useEffect } from "react";
+import { StatusBar, StyleSheet, View, Text } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { Icon } from "react-native-elements";
-import appTheme, { COLORS } from "./constants/theme";
+import appTheme from "./constants/theme";
+import { useFonts } from "expo-font";
 
-import OnBoarding from "./pages/onboarding/index";
 import Home from "./pages/home/index";
 import Products from "./pages/products/index";
+import FindProducts from "./pages/findproducts/index";
 import Orders from "./pages/orders/index";
 import Profile from "./pages/profile/index";
 import LogIn from "./pages/login/index";
-import SignIn from "./pages/signin/index";
 import ResetPass from "./pages/forgetpassword/index";
 
+import Toasts from "./components/Toast";
 import { Provider as AuthProvider } from "./context/AuthContext.js";
 import { Context as AuthContext } from "./context/AuthContext";
 
@@ -24,20 +25,18 @@ function AuthFlow() {
     <AuthStack.Navigator>
       <AuthStack.Screen
         options={{ headerShown: false }}
-        name="OnBoarding"
-        component={OnBoarding}
-      />
-      <AuthStack.Screen
-        options={{ headerShown: false }}
         name="LogIn"
         component={LogIn}
       />
+
       <AuthStack.Screen
-        options={{ headerShown: false }}
-        name="SignIn"
-        component={SignIn}
+        name="ResetPass"
+        component={ResetPass}
+        options={{
+          headerBackTitle: "فراموشی کلمه عبور",
+          title: "فراموشی کلمه عبور",
+        }}
       />
-      <AuthStack.Screen name="ResetPass" component={ResetPass} />
     </AuthStack.Navigator>
   );
 }
@@ -46,56 +45,183 @@ function HomeFlow() {
   return (
     <Tab.Navigator
       screenOptions={({ route }) => ({
-        tabBarIcon: ({ focused, color, size }) => {
-          let iconName;
-          switch (route.name) {
-            case "Home":
-              iconName = focused ? "ios-checkbox" : "ios-checkbox-outline";
-              break;
-            case "Products":
-              iconName = focused ? "ios-add-circle" : "ios-add-circle-outline";
-              break;
-            case "Orders":
-              iconName = focused
-                ? "ios-information-circle"
-                : "ios-information-circle-outline";
-              break;
-            case "Profile":
-              iconName = focused
-                ? "ios-information-circle"
-                : "ios-information-circle-outline";
-              break;
-            default:
-              iconName = focused
-                ? "ios-information-circle"
-                : "ios-information-circle-outline";
-              break;
-          }
-
-          // You can return any component that you like here!
-          return (
-            <Icon
-              name={iconName}
-              type="ionicon"
-              size={size + 5}
-              color={color}
-            />
-          );
-        },
         headerShown: false,
-        tabBarOptions: {
-          activeTintColor: "tomato",
-          inactiveTintColor: "gray",
+        tabBarShowLabel: false,
+        tabBarHideOnKeyboard: true,
+
+        tabBarStyle: {
+          // // marginTop: 120,
+          // position: "absolute",
+          // bottom: 5,
+          // // left: 10,
+          // // right: 10,
+          // marginLeft: 10,
+          // marginRight: 10,
+          marginBottom: 5,
+          elevation: 0,
+          backgroundColor: "#FFFFFF",
+
+          // borderRadius: 15,
+          height: 65,
+          ...styles.shadow,
         },
       })}
     >
-      <Tab.Screen name="Home" component={Home} />
-      <Tab.Screen name="Orders" component={Orders} />
-      <Tab.Screen name="Products" component={Products} />
+      <Tab.Screen
+        name="Home"
+        component={Home}
+        options={{
+          tabBarIcon: ({ focused }) => (
+            <View
+              style={{
+                alignItems: "center",
+                justifyContent: "center",
+                top: 10,
+              }}
+            >
+              <Icon
+                name={focused ? "home-outline" : "home"}
+                type="ionicon"
+                size={25}
+                color={focused ? "#00CED1" : "#748c94"}
+              />
+              <Text
+                style={{
+                  color: focused ? "#00CED1" : "#748c94",
+                  fontSize: 14,
+                  fontFamily: "byekan",
+                }}
+              >
+                خانه
+              </Text>
+            </View>
+          ),
+        }}
+      />
+      <Tab.Screen
+        name="Orders"
+        component={Orders}
+        options={{
+          tabBarIcon: ({ focused }) => (
+            <View
+              style={{
+                alignItems: "center",
+                justifyContent: "center",
+                top: 10,
+              }}
+            >
+              <Icon
+                name={focused ? "grid-outline" : "grid"}
+                type="ionicon"
+                size={25}
+                color={focused ? "#00CED1" : "#748c94"}
+              />
+              <Text
+                style={{
+                  color: focused ? "#00CED1" : "#748c94",
+                  fontSize: 14,
+                  fontFamily: "byekan",
+                }}
+              >
+                سفارشات
+              </Text>
+            </View>
+          ),
+        }}
+      />
+      <Tab.Screen
+        name="Products"
+        component={Products}
+        options={{
+          tabBarIcon: ({ focused }) => (
+            <View
+              style={{
+                alignItems: "center",
+                justifyContent: "center",
+                top: 10,
+              }}
+            >
+              <Icon
+                name={focused ? "options-outline" : "options"}
+                type="ionicon"
+                size={25}
+                color={focused ? "#00CED1" : "#748c94"}
+              />
+              <Text
+                style={{
+                  color: focused ? "#00CED1" : "#748c94",
+                  fontSize: 14,
+                  fontFamily: "byekan",
+                }}
+              >
+                محصولات
+              </Text>
+            </View>
+          ),
+        }}
+      />
+      <Tab.Screen
+        name="FindProducts"
+        component={FindProducts}
+        options={{
+          tabBarIcon: ({ focused }) => (
+            <View
+              style={{
+                alignItems: "center",
+                justifyContent: "center",
+                top: 10,
+              }}
+            >
+              <Icon
+                name={focused ? "search-outline" : "search"}
+                type="ionicon"
+                size={25}
+                color={focused ? "#00CED1" : "#748c94"}
+              />
+              <Text
+                style={{
+                  color: focused ? "#00CED1" : "#748c94",
+                  fontSize: 14,
+                  fontFamily: "byekan",
+                }}
+              >
+                جستجو
+              </Text>
+            </View>
+          ),
+        }}
+      />
       <Tab.Screen
         name="Profile"
         component={Profile}
-        options={{ headerShown: false }}
+        options={{
+          headerShown: false,
+          tabBarIcon: ({ focused }) => (
+            <View
+              style={{
+                alignItems: "center",
+                justifyContent: "center",
+                top: 10,
+              }}
+            >
+              <Icon
+                name={focused ? "person-outline" : "person"}
+                type="ionicon"
+                size={25}
+                color={focused ? "#00CED1" : "#748c94"}
+              />
+              <Text
+                style={{
+                  color: focused ? "#00CED1" : "#748c94",
+                  fontSize: 14,
+                  fontFamily: "byekan",
+                }}
+              >
+                پروفایل
+              </Text>
+            </View>
+          ),
+        }}
       />
     </Tab.Navigator>
   );
@@ -109,16 +235,33 @@ const theme = {
     ...appTheme.COLORS,
     border: "transparent",
   },
-  dark: true,
+  dark: false,
 };
+const styles = StyleSheet.create({
+  shadow: {
+    shadowColor: "#95cf12",
+    shadowOffset: {
+      width: 0,
+      height: 10,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 3.5,
+    elevation: 5,
+  },
+});
 const App = () => {
   const { state } = useContext(AuthContext);
-  console.log(state);
-  StatusBar.setBarStyle("light-content", true);
+  let [loaded, error] = useFonts({
+    byekan: require("./assets/fonts/byekan.ttf"),
+  });
+  if (!loaded) {
+    return null;
+  }
+  StatusBar.setBarStyle("dark-content", true);
   return (
     <NavigationContainer>
       <Stack.Navigator>
-        {state.token === null ? (
+        {state.userToken === null ? (
           <>
             <Stack.Screen
               options={{ headerShown: false }}
@@ -141,6 +284,7 @@ export default () => {
   return (
     <AuthProvider>
       <App />
+      <Toasts />
     </AuthProvider>
   );
 };
