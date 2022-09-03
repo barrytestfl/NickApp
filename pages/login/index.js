@@ -105,7 +105,6 @@ const LoginScreen = ({ navigation }) => {
               placeholder="کلمه عبور"
               secureTextEntry={true}
               autoCapitalize="none"
-              keyboardType="visible-password"
               onChangeText={validationPassword}
               value={password}
             />
