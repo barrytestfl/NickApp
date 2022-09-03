@@ -30,7 +30,9 @@ const HeaderHome = ({ item }) => {
             dashboard();
           }}
         >
-          {state.isLoading && <ActivityIndicator size="small" color="green" />}
+          {state.isLoading && (
+            <ActivityIndicator size="small" color="#FFFFFF" />
+          )}
           {!state.isLoading && (
             <Icon
               name={"sync-outline"}
