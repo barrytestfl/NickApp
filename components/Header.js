@@ -61,10 +61,10 @@ const HeaderHome = ({ item }) => {
           }}
         >
           <Icon
-            name={"person-circle-outline"}
+            name={"log-out-outline"}
             type="ionicon"
             size={40}
-            color={"blue"}
+            color={"red"}
           />
         </TouchableOpacity>
       </View>

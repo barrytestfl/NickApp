@@ -5,7 +5,7 @@ import { COLORS, SIZE } from "../../constants/theme";
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    marginTop:2,
+     
     backgroundColor: 'transparent',
     elevation: 0,
     //

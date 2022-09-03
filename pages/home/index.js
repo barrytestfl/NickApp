@@ -30,8 +30,8 @@ const Home = ({ navigation }) => {
   }, []);
 
   return (
-    <SafeAreaView style={styles.container}>
-      <View>
+    <View style={styles.container}>
+      <View style={{ height: 80 }}>
         <View style={styles.header}>
           <HeaderHome item={state.profile} />
         </View>
@@ -136,7 +136,7 @@ const Home = ({ navigation }) => {
           </View>
         )}
       </View> */}
-    </SafeAreaView>
+    </View>
   );
 };
 export default Home;
