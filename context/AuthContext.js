@@ -69,7 +69,7 @@ const authReducer = (state, action) => {
     case "dashboard":
       return {
         ...state,
-        isLoading: true,
+        isLoading: false,
         showToast: false,
         dashboard: action.payload.dashboard,
       };
@@ -234,7 +234,7 @@ const forgetpassword = (dispatch) => {
 const dashboard = (dispatch) => {
   return () => {
     // Do some API Request here
-
+    dispatch({ type: "loading", payload: {} });
     axiosInstance
       .get("/products/dashboard")
       .then((res) => {
