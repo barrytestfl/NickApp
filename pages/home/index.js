@@ -9,7 +9,6 @@ import {
   Alert,
   ScrollView,
 } from "react-native";
-import { SafeAreaView } from "react-native-safe-area-context";
 
 import styles from "./styles";
 import { Context as AuthContext } from "../../context/AuthContext";
@@ -31,8 +30,8 @@ const Home = ({ navigation }) => {
 
   return (
     <View style={styles.container}>
-      <View style={{ height: 80 }}>
-        <View style={styles.header}>
+      <View style={{ height: 100 }}>
+        <View style={[styles.header, { height: "100%", padding: 15 }]}>
           <HeaderHome item={state.profile} />
         </View>
       </View>

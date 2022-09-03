@@ -69,7 +69,7 @@ const authReducer = (state, action) => {
     case "dashboard":
       return {
         ...state,
-        isLoading: false,
+        isLoading: true,
         showToast: false,
         dashboard: action.payload.dashboard,
       };
