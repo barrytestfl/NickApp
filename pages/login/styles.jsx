@@ -58,7 +58,7 @@ const styles = StyleSheet.create({
     input: {
       height: 40,
       flex: 1,
-     
+      textAlign: "left",
       fontSize: 16,
       color: '#333',
       backgroundColor:"#FFF",
