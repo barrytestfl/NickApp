@@ -101,12 +101,12 @@ const LoginScreen = ({ navigation }) => {
               color="#00CED1"
             />
             <TextInput
-              style={styles.input}
+              style={[styles.input, { writingDirection: "rtl" }]}
               placeholder="کلمه عبور"
-              secureTextEntry={true}
+              // secureTextEntry={true}
               autoCapitalize="none"
               //keyboardType="email-address"
-              // textContentType="password"
+              textContentType="password"
               onChangeText={validationPassword}
               value={password}
             />
