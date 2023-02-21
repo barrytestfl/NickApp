@@ -282,7 +282,7 @@ const Products = () => {
                       fontFamily: "byekan",
                     }}
                   >
-                    {messagePriceVal}
+                    {/* {messagePriceVal} */}
                   </Text>
                 </View>
                 <View style={styles.dataContainer}>
@@ -353,8 +353,7 @@ const Products = () => {
                   styles.button,
                   styles.buttonClose,
                   {
-                    backgroundColor:
-                      min > Price || max < Price ? "gray" : "#00CED1",
+                    backgroundColor: "#00CED1",
                     position: "absolute",
                     zIndex: 1,
                     elevation: 1,
@@ -364,7 +363,7 @@ const Products = () => {
                   },
                 ]}
                 onPress={() => UpdateProduct()}
-                disabled={min > Price || max < Price}
+                // disabled={min > Price || max < Price}
               >
                 <Text style={styles.textStyle}>ثبت</Text>
               </Pressable>
